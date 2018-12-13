@@ -1,3 +1,8 @@
+body {
+    background-image: url("img/background-hearthstone-repeat.jpg");
+    color: white;
+}
+
 #page-content-wrapper {
     padding-top: 1%;
     padding-bottom: 38px;
