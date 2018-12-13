@@ -69,74 +69,81 @@
                             );
 
                             $cardObject = json_decode($response -> raw_body); 
-                            $cardRarity = $cardObject[0] -> rarity;
-                            if ( $cardRarity == 'Legendary') {
-                                $cardCraft = 1600;
-                                $cardCraftGold = 3200;
-                                $cardDust = 400;
-                                $cardDustGold = 1600;
-                            }
-                            else if ($cardRarity == 'Epic') {
-                                $cardCraft = 400;
-                                $cardCraftGold = 1600;
-                                $cardDust = 100;
-                                $cardDustGold = 400;
-                            }
-                            else if ($cardRarity == 'Rare') {
-                                $cardCraft = 100;
-                                $cardCraftGold = 800;
-                                $cardDust = 20;
-                                $cardDustGold = 100;
-                            }
-                            else if ($cardRarity == 'Common') {
-                                $cardCraft = 40;
-                                $cardCraftGold = 400;
-                                $cardDust = 5;
-                                $cardDustGold = 50;
+                            // var_dump ($cardObject);
+                            if (is_array($cardObject) == 0) {
+                                echo '<h1 class="text-center">No results, please try again.</h1>';
                             }
                             else {
-                                $cardCraft = "N/A";
-                                $cardCraftGold = "N/A";
-                                $cardDust = "N/A";
-                                $cardDustGold = "N/A";
-                            }
+                                $cardRarity = $cardObject[0] -> rarity;
+                                if ( $cardRarity == 'Legendary') {
+                                    $cardCraft = 1600;
+                                    $cardCraftGold = 3200;
+                                    $cardDust = 400;
+                                    $cardDustGold = 1600;
+                                }
+                                else if ($cardRarity == 'Epic') {
+                                    $cardCraft = 400;
+                                    $cardCraftGold = 1600;
+                                    $cardDust = 100;
+                                    $cardDustGold = 400;
+                                }
+                                else if ($cardRarity == 'Rare') {
+                                    $cardCraft = 100;
+                                    $cardCraftGold = 800;
+                                    $cardDust = 20;
+                                    $cardDustGold = 100;
+                                }
+                                else if ($cardRarity == 'Common') {
+                                    $cardCraft = 40;
+                                    $cardCraftGold = 400;
+                                    $cardDust = 5;
+                                    $cardDustGold = 50;
+                                }
+                                else {
+                                    $cardCraft = "N/A";
+                                    $cardCraftGold = "N/A";
+                                    $cardDust = "N/A";
+                                    $cardDustGold = "N/A";
+                                }
 
-                        echo '<h1 class="text-center">' . $cardObject[0] -> name . '</h1><br><div class="row"><div class="col-md-1"></div>
-                        <div class="col-md-5 text-center"><img id="normal_card" src="' . $cardObject[0] -> img . '" class="img-fluid mx-auto normal_card">
-                        <img id="golden_card" src="' . $cardObject[0] -> imgGold . '" class="img-fluid mx-auto golden_card">
-                        <div class="btn-group btn-group-toggle d-block" data-toggle="buttons"><label class="btn btn-secondary btn-lg active" id="option1">
-                        <input type="radio" name="options"  autocomplete="off" checked> Normal</label><label class="btn btn-secondary btn-lg" id="option2">
-                        <input type="radio" name="options"  autocomplete="off"> Golden</label></div></div><div class="col-md-4"><br>
-                        <p><b>Mana Cost:</b> ' . $cardObject[0] -> cost . '</p>';
-                        if (isset($cardObject[0] -> attack)) {
-                            echo '<p><b>Attack:</b> ' . $cardObject[0] -> attack . '</p>';
-                        }
-                        else {
-                            echo '<p><b>Attack:</b> N/A (' . $cardObject[0] -> type . ')</p>';
-                        }
-                        if (isset($cardObject[0] -> health)) {
-                            echo '<p><b>Health:</b> ' . $cardObject[0] -> health . '</p>';
-                        }
-                        else {
-                            echo '<p><b>Health:</b> N/A (' . $cardObject[0] -> type . ')</p>';
-                        }
-                        echo '<p><b>Crafting Cost: </b><span class="normal_card">' . $cardCraft . '</span><span class="golden_card">' . $cardCraftGold . '</span></p>
-                        <p><b>Arcane Dust gained: </b><span class="normal_card">' . $cardDust . '</span><span class="golden_card">' . $cardDustGold . '</span></p>
-                        <p><b>Rarity:</b> ' . $cardObject[0] -> rarity . '</p><p><b>Class:</b> <span id="' . $cardObject[0] -> playerClass . 
-                        '">' . $cardObject[0] -> playerClass . '</span></p><p><b>Type:</b> ' . $cardObject[0] -> type . '</p><p><b>Set:</b> '
-                         . $cardObject[0] -> cardSet . '</p>';
-                        if (isset($cardObject[0] -> text)) {
-                            echo '<p><b>Text:</b> ' . $cardObject[0] -> text . '</p>';
-                        }
-                        else {
-                            echo "<p><b>Text</b>: N/A</p>";
-                        }
-                        echo '<p><b>Quotes:</b> ' . $cardObject[0] -> flavor . '</p><p><b>Artist:</b> ' . $cardObject[0] -> artist
-                         . '</p></div><div class="col-md-1"></div></div></div> ';
-                ?>
-            </div> <!-- col-lg-12 -->
+                                echo '<h1 class="text-center">' . $cardObject[0] -> name . '</h1><br><div class="row"><div class="col-md-1"></div>
+                                <div class="col-md-5 text-center"><img id="normal_card" src="' . $cardObject[0] -> img . '" class="img-fluid mx-auto normal_card">
+                                <img id="golden_card" src="' . $cardObject[0] -> imgGold . '" class="img-fluid mx-auto golden_card">
+                                <div class="btn-group btn-group-toggle d-block" data-toggle="buttons"><label class="btn btn-secondary btn-lg active" id="option1">
+                                <input type="radio" name="options"  autocomplete="off" checked> Normal</label><label class="btn btn-secondary btn-lg" id="option2">
+                                <input type="radio" name="options"  autocomplete="off"> Golden</label></div></div><div class="col-md-4"><br>
+                                <p><b>Mana Cost:</b> ' . $cardObject[0] -> cost . '</p>';
+                                if (isset($cardObject[0] -> attack)) {
+                                    echo '<p><b>Attack:</b> ' . $cardObject[0] -> attack . '</p>';
+                                }
+                                else {
+                                    echo '<p><b>Attack:</b> N/A (' . $cardObject[0] -> type . ')</p>';
+                                }
+                                if (isset($cardObject[0] -> health)) {
+                                    echo '<p><b>Health:</b> ' . $cardObject[0] -> health . '</p>';
+                                }
+                                else {
+                                    echo '<p><b>Health:</b> N/A (' . $cardObject[0] -> type . ')</p>';
+                                }
+                                echo '<p><b>Crafting Cost: </b><span class="normal_card">' . $cardCraft . '</span><span class="golden_card">' . $cardCraftGold . '</span></p>
+                                <p><b>Arcane Dust gained: </b><span class="normal_card">' . $cardDust . '</span><span class="golden_card">' . $cardDustGold . '</span></p>
+                                <p><b>Rarity:</b> ' . $cardObject[0] -> rarity . '</p><p><b>Class:</b> <span id="' . $cardObject[0] -> playerClass . 
+                                '">' . $cardObject[0] -> playerClass . '</span></p><p><b>Type:</b> ' . $cardObject[0] -> type . '</p><p><b>Set:</b> '
+                                . $cardObject[0] -> cardSet . '</p>';
+                                if (isset($cardObject[0] -> text)) {
+                                    echo '<p><b>Text:</b> ' . $cardObject[0] -> text . '</p>';
+                                }
+                                else {
+                                    echo "<p><b>Text</b>: N/A</p>";
+                                }
+                                echo '<p><b>Quotes:</b> ' . $cardObject[0] -> flavor . '</p><p><b>Artist:</b> ' . $cardObject[0] -> artist
+                                . '</p></div><div class="col-md-1"></div></div></div> ';
+                            };
+                        ?>
+                    </div> <!-- col-lg-12 -->
+                </div>
+            </div>
         </div>
-    </div>
     <footer class="footer">
         <img src="img/social_email.png" height="30px">
         <img src="img/social_facebook3.png" height="30px">
