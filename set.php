@@ -38,6 +38,7 @@
                         <a class="dropdown-item" href="set.php?set=Journey to Un'Goro">Journey to Un'Goro</a>
                         <a class="dropdown-item" href="set.php?set=Hall of Fame">Hall of Fame</a>
                         <a class="dropdown-item" href="set.php?set=Classic">Classic</a>
+                        <a class="dropdown-item" href="set.php?set=Basic">Basic</a>
                         <div class="dropdown-divider"></div>
                         <a class="dropdown-item" href="#">Wild Sets</a>
                     </div>

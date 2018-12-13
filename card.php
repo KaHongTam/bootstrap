@@ -39,6 +39,7 @@
                                 <a class="dropdown-item" href="set.php?set=Journey to Un'Goro">Journey to Un'Goro</a>
                                 <a class="dropdown-item" href="set.php?set=Hall of Fame">Hall of Fame</a>
                                 <a class="dropdown-item" href="set.php?set=Classic">Classic</a>
+                                <a class="dropdown-item" href="set.php?set=Basic">Basic</a>
                                 <div class="dropdown-divider"></div>
                                 <a class="dropdown-item" href="#">Wild Sets</a>
                             </div>
@@ -105,6 +106,8 @@
                                     $cardDust = "N/A";
                                     $cardDustGold = "N/A";
                                 }
+                                //THIS NEEDS FIXING --> & CHARACTER in a link
+                                // $set = $cardObject[0] -> cardSet;
 
                                 echo '<h1 class="text-center">' . $cardObject[0] -> name . '</h1><br><div class="row"><div class="col-md-1"></div>
                                 <div class="col-md-5 text-center"><img id="normal_card" src="' . $cardObject[0] -> img . '" class="img-fluid mx-auto normal_card">
@@ -128,8 +131,8 @@
                                 echo '<p><b>Crafting Cost: </b><span class="normal_card">' . $cardCraft . '</span><span class="golden_card">' . $cardCraftGold . '</span></p>
                                 <p><b>Arcane Dust gained: </b><span class="normal_card">' . $cardDust . '</span><span class="golden_card">' . $cardDustGold . '</span></p>
                                 <p><b>Rarity:</b> ' . $cardObject[0] -> rarity . '</p><p><b>Class:</b> <span id="' . $cardObject[0] -> playerClass . 
-                                '">' . $cardObject[0] -> playerClass . '</span></p><p><b>Type:</b> ' . $cardObject[0] -> type . '</p><p><b>Set:</b> '
-                                . $cardObject[0] -> cardSet . '</p>';
+                                '">' . $cardObject[0] -> playerClass . '</span></p><p><b>Type:</b> ' . $cardObject[0] -> type . '</p><p><b>Set: </b><a href="set.php?set='
+                                . $cardObject[0] -> cardSet . '">' . $cardObject[0] -> cardSet . '</a></p>';
                                 if (isset($cardObject[0] -> text)) {
                                     echo '<p><b>Text:</b> ' . $cardObject[0] -> text . '</p>';
                                 }
