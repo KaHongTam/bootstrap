@@ -14,69 +14,69 @@
 </head>
 
 <body>
-        <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-                <a class="navbar-brand" href="index.html"><img src="img/Hearthstone_logo1.png" height="65"></a>
-                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
-                    aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-                    <span class="navbar-toggler-icon"></span>
-                </button>
-        
-                <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                    <ul class="navbar-nav mr-auto">
-                        <li>
-                            <a class="nav-link" href="index.html">Articles</a>
-                        </li>
-                        <li class="nav-item dropdown">
-                            <a class="nav-link dropdown-toggle active" href="#" id="navbarDropdown" role="button" data-toggle="dropdown"
-                                aria-haspopup="true" aria-expanded="false">
-                                Set</a>
-                            <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                                <a class="dropdown-item" href="set.php?set=Rastakhan's Rumble">Rastakhan's Rumble</a>
-                                <a class="dropdown-item" href="set.php?set=The Boomsday Project">The Boomsday Project</a>
-                                <a class="dropdown-item" href="set.php?set=The Witchwood">The Witchwood</a>
-                                <a class="dropdown-item" href="set.php?set=Kobolds %26 Catacombs">Kobolds & Catacombs</a>
-                                <a class="dropdown-item" href="set.php?set=Knights of the Frozen Throne">Knights of the Frozen Throne</a>
-                                <a class="dropdown-item" href="set.php?set=Journey to Un'Goro">Journey to Un'Goro</a>
-                                <a class="dropdown-item" href="set.php?set=Hall of Fame">Hall of Fame</a>
-                                <a class="dropdown-item" href="set.php?set=Classic">Classic</a>
-                                <div class="dropdown-divider"></div>
-                                <a class="dropdown-item" href="#">Wild Sets</a>
-                            </div>
-                        </li>
-                        <!-- <li>
-                            <a class="nav-link" href="#">Meta Decks</a>
-                        </li> -->
-                    </ul>
-                    <form class="form-inline my-2 my-lg-0" action="card.php" method="GET">
-                        <input class="form-control mr-sm-2" type="search" placeholder="Search by card" aria-label="Search" name="name">
-                        <button class="btn btn-outline-light my-2 my-sm-0" type="submit">Search</button>
-                    </form>
-                </div>
-            </nav>
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+        <a class="navbar-brand" href="index.html"><img src="img/Hearthstone_logo1.png" height="65"></a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+                aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+    
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav mr-auto">
+                <li>
+                    <a class="nav-link" href="index.html">Articles</a>
+                </li>
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle active" href="#" id="navbarDropdown" role="button" data-toggle="dropdown"
+                        aria-haspopup="true" aria-expanded="false">Set</a>
+                    <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                        <a class="dropdown-item" href="set.php?set=Rastakhan's Rumble">Rastakhan's Rumble</a>
+                        <a class="dropdown-item" href="set.php?set=The Boomsday Project">The Boomsday Project</a>
+                        <a class="dropdown-item" href="set.php?set=The Witchwood">The Witchwood</a>
+                        <a class="dropdown-item" href="set.php?set=Kobolds %26 Catacombs">Kobolds & Catacombs</a>
+                        <a class="dropdown-item" href="set.php?set=Knights of the Frozen Throne">Knights of the Frozen Throne</a>
+                        <a class="dropdown-item" href="set.php?set=Journey to Un'Goro">Journey to Un'Goro</a>
+                        <a class="dropdown-item" href="set.php?set=Hall of Fame">Hall of Fame</a>
+                        <a class="dropdown-item" href="set.php?set=Classic">Classic</a>
+                        <div class="dropdown-divider"></div>
+                        <a class="dropdown-item" href="#">Wild Sets</a>
+                    </div>
+                </li>
+            <!-- <li>
+                    <a class="nav-link" href="#">Meta Decks</a>
+            </li> -->
+            </ul>
+            <form class="form-inline my-2 my-lg-0" action="card.php" method="GET">
+                <input class="form-control mr-sm-2" type="search" placeholder="Search by card" aria-label="Search" name="name">
+                <button class="btn btn-outline-light my-2 my-sm-0" type="submit">Search</button>
+            </form>
+        </div>
+    </nav>
     <div id="page-content-wrapper">
-            <div class="container-fluid">
-                <div class="row">
-                        <div class="col-lg-3"></div>
-                        <div class="col-lg-6">
-                            <?php
-                                    include "Unirest.php";
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-lg-3"></div>
+                    <div class="col-lg-6">
+                        <?php
+                            include "Unirest.php";
 
-                                // These code snippets use an open-source library. http://unirest.io/php
-                                $set = $_GET['set'];
-                                $response = Unirest\Request::get('https://omgvamp-hearthstone-v1.p.mashape.com/cards/sets/' . rawurlencode($set) . '?collectible=1',
-                                array(
-                                    "X-Mashape-Key" => "WIn8D1aVHgmshmfQKvu0TCf7oIXap1k7JoPjsnXogBBeLe8Q8X"
-                                )
-                                );
-                                    $cardObject = json_decode($response -> raw_body); 
-                                    echo '<h1>All ' . count($cardObject) . ' cards of ' . $set . '</h1>';
-                                    // Dit is de loop om de name van alle kaarten te zien
-                                    for($i = 0, $size = count($cardObject); $i < $size; ++$i) {
-                                    // echo $cardObject[$i] -> name . "<br>";
-                                    echo '<a href=card.php?name=' . rawurlencode($cardObject[$i] -> name) . '>' . $cardObject[$i] -> name . '</a><br>';
-                                    }
-                            ?>
-                        </div>
+                            // These code snippets use an open-source library. http://unirest.io/php
+                            $set = $_GET['set'];
+                            $response = Unirest\Request::get('https://omgvamp-hearthstone-v1.p.mashape.com/cards/sets/' . rawurlencode($set) . '?collectible=1',
+                            array(
+                                "X-Mashape-Key" => "WIn8D1aVHgmshmfQKvu0TCf7oIXap1k7JoPjsnXogBBeLe8Q8X"
+                            )
+                            );
+                            $cardObject = json_decode($response -> raw_body); 
+                            echo '<h1>All ' . count($cardObject) . ' cards of ' . $set . '</h1>';
+                            // Dit is de loop om de name van alle kaarten te zien
+                            for($i = 0, $size = count($cardObject); $i < $size; ++$i) {
+                                echo '<a href=card.php?name=' . rawurlencode($cardObject[$i] -> name) . '>' . $cardObject[$i] -> name . '</a><br>';
+                            }
+                        ?>
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
     <footer class="footer">

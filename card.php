@@ -123,8 +123,8 @@
                         echo '<p><b>Crafting Cost: </b><span class="normal_card">' . $cardCraft . '</span><span class="golden_card">' . $cardCraftGold . '</span></p>
                         <p><b>Arcane Dust gained: </b><span class="normal_card">' . $cardDust . '</span><span class="golden_card">' . $cardDustGold . '</span></p>
                         <p><b>Rarity:</b> ' . $cardObject[0] -> rarity . '</p><p><b>Class:</b> <span id="' . $cardObject[0] -> playerClass . 
-                        '">' . $cardObject[0] -> playerClass . '</span></p><p><b>Type:</b> ' . $cardObject[0] -> type . '</p>';
-                        echo '<p><b>Set:</b> ' . $cardObject[0] -> cardSet . '</p>';
+                        '">' . $cardObject[0] -> playerClass . '</span></p><p><b>Type:</b> ' . $cardObject[0] -> type . '</p><p><b>Set:</b> '
+                         . $cardObject[0] -> cardSet . '</p>';
                         if (isset($cardObject[0] -> text)) {
                             echo '<p><b>Text:</b> ' . $cardObject[0] -> text . '</p>';
                         }
