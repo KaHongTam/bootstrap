@@ -149,11 +149,16 @@
                 </div>
             </div>
         </div>
-    <footer class="footer">
-        <img src="img/social_email.png" height="30px">
-        <img src="img/social_facebook3.png" height="30px">
-        <img src="img/social_twitter.png" height="30px">
-    </footer>
+        <footer class="footer">
+            <div class="row">
+                <div class="col-md-12 text-center">
+                    Kampany.nl (c) 
+                    <img src="img/social_email.png" height="30px">
+                    <img src="img/social_facebook3.png" height="30px">
+                    <img src="img/social_twitter.png" height="30px">
+                </div>
+            </div>
+        </footer>
 </body>
 <script src="index.js"></script>
 </html>
