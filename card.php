@@ -36,15 +36,15 @@
                                 aria-haspopup="true" aria-expanded="false">
                                 Set</a>
                             <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                                <a class="dropdown-item" href="set.php?set=Rastakhan's Rumble">Rastakhan's Rumble</a>
-                                <a class="dropdown-item" href="set.php?set=The Boomsday Project">The Boomsday Project</a>
-                                <a class="dropdown-item" href="set.php?set=The Witchwood">The Witchwood</a>
-                                <a class="dropdown-item" href="set.php?set=Kobolds %26 Catacombs">Kobolds & Catacombs</a>
-                                <a class="dropdown-item" href="set.php?set=Knights of the Frozen Throne">Knights of the Frozen Throne</a>
-                                <a class="dropdown-item" href="set.php?set=Journey to Un'Goro">Journey to Un'Goro</a>
-                                <a class="dropdown-item" href="set.php?set=Hall of Fame">Hall of Fame</a>
-                                <a class="dropdown-item" href="set.php?set=Classic">Classic</a>
-                                <a class="dropdown-item" href="set.php?set=Basic">Basic</a>
+                                <a class="dropdown-item" href="set.php?set=Rastakhan's Rumble&page=1">Rastakhan's Rumble</a>
+                                <a class="dropdown-item" href="set.php?set=The Boomsday Project&page=1">The Boomsday Project</a>
+                                <a class="dropdown-item" href="set.php?set=The Witchwood&page=1">The Witchwood</a>
+                                <a class="dropdown-item" href="set.php?set=Kobolds %26 Catacombs&page=1">Kobolds & Catacombs</a>
+                                <a class="dropdown-item" href="set.php?set=Knights of the Frozen Throne&page=1">Knights of the Frozen Throne</a>
+                                <a class="dropdown-item" href="set.php?set=Journey to Un'Goro&page=1">Journey to Un'Goro</a>
+                                <a class="dropdown-item" href="set.php?set=Hall of Fame&page=1">Hall of Fame</a>
+                                <a class="dropdown-item" href="set.php?set=Classic&page=1">Classic</a>
+                                <a class="dropdown-item" href="set.php?set=Basic&page=1">Basic</a>
                                 <div class="dropdown-divider"></div>
                                 <a class="dropdown-item" href="#">Wild Sets</a>
                             </div>
@@ -110,7 +110,7 @@
                                     $cardDust = "N/A";
                                     $cardDustGold = "N/A";
                                 }
-                                //THIS NEEDS FIXING --> & CHARACTER in a link
+
                                 $set = $cardObject[0] -> cardSet;
 
                                 $set = str_replace('&', '%26', $set);
@@ -134,8 +134,8 @@
                                 else {
                                     echo '<p><b>Health:</b> N/A (' . $cardObject[0] -> type . ')</p>';
                                 }
-                                echo '<p><b>Crafting Cost: </b><span class="normal_card">' . $cardCraft . '</span><span class="golden_card">' . $cardCraftGold . '</span></p>
-                                <p><b>Arcane Dust gained: </b><span class="normal_card">' . $cardDust . '</span><span class="golden_card">' . $cardDustGold . '</span></p>
+                                echo '<p><b>Dust cost: </b><span class="normal_card">' . $cardCraft . '</span><span class="golden_card">' . $cardCraftGold . '</span></p>
+                                <p><b> Dust gained: </b><span class="normal_card">' . $cardDust . '</span><span class="golden_card">' . $cardDustGold . '</span></p>
                                 <p><b>Rarity:</b> ' . $cardObject[0] -> rarity . '</p><p><b>Class:</b> <span id="' . $cardObject[0] -> playerClass . 
                                 '">' . $cardObject[0] -> playerClass . '</span></p><p><b>Type:</b> ' . $cardObject[0] -> type . '</p><p><b>Set: </b><a href="set.php?set='
                                 . $set . '">' . $cardObject[0] -> cardSet . '</a></p>';

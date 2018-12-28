@@ -1,6 +1,19 @@
+@font-face {
+    font-family: Friz;
+    src: url(Friz_Quadrata.otf);
+  }
+
 body {
     background-image: url("img/paper-background1.jpg");
     color: black;
+}
+
+h1, b {
+    font-family: Friz;
+}
+
+p {
+    font-size: 22px;
 }
 
 #page-content-wrapper {

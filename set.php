@@ -4,12 +4,7 @@
 <head>
     <meta charset="utf-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>
-        <?php 
-            $set = $_GET['set'];
-            echo $set
-        ?>
-    </title>
+    <title>Page Title</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
@@ -35,15 +30,15 @@
                     <a class="nav-link dropdown-toggle active" href="#" id="navbarDropdown" role="button" data-toggle="dropdown"
                         aria-haspopup="true" aria-expanded="false">Set</a>
                     <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                        <a class="dropdown-item" href="set.php?set=Rastakhan's Rumble">Rastakhan's Rumble</a>
-                        <a class="dropdown-item" href="set.php?set=The Boomsday Project">The Boomsday Project</a>
-                        <a class="dropdown-item" href="set.php?set=The Witchwood">The Witchwood</a>
-                        <a class="dropdown-item" href="set.php?set=Kobolds %26 Catacombs">Kobolds & Catacombs</a>
-                        <a class="dropdown-item" href="set.php?set=Knights of the Frozen Throne">Knights of the Frozen Throne</a>
-                        <a class="dropdown-item" href="set.php?set=Journey to Un'Goro">Journey to Un'Goro</a>
-                        <a class="dropdown-item" href="set.php?set=Hall of Fame">Hall of Fame</a>
-                        <a class="dropdown-item" href="set.php?set=Classic">Classic</a>
-                        <a class="dropdown-item" href="set.php?set=Basic">Basic</a>
+                        <a class="dropdown-item" href="set.php?set=Rastakhan's Rumble&page=1">Rastakhan's Rumble</a>
+                        <a class="dropdown-item" href="set.php?set=The Boomsday Project&page=1">The Boomsday Project</a>
+                        <a class="dropdown-item" href="set.php?set=The Witchwood&page=1">The Witchwood</a>
+                        <a class="dropdown-item" href="set.php?set=Kobolds %26 Catacombs&page=1">Kobolds & Catacombs</a>
+                        <a class="dropdown-item" href="set.php?set=Knights of the Frozen Throne&page=1">Knights of the Frozen Throne</a>
+                        <a class="dropdown-item" href="set.php?set=Journey to Un'Goro&page=1">Journey to Un'Goro</a>
+                        <a class="dropdown-item" href="set.php?set=Hall of Fame&page=1">Hall of Fame</a>
+                        <a class="dropdown-item" href="set.php?set=Classic&page=1">Classic</a>
+                        <a class="dropdown-item" href="set.php?set=Basic&page=1">Basic</a>
                         <div class="dropdown-divider"></div>
                         <a class="dropdown-item" href="#">Wild Sets</a>
                     </div>
@@ -68,6 +63,7 @@
 
                             // These code snippets use an open-source library. http://unirest.io/php
                             $set = $_GET['set'];
+                            $pageIndex = $_GET['page'];
                             $response = Unirest\Request::get('https://omgvamp-hearthstone-v1.p.mashape.com/cards/sets/' . rawurlencode($set) . '?collectible=1',
                             array(
                                 "X-Mashape-Key" => "WIn8D1aVHgmshmfQKvu0TCf7oIXap1k7JoPjsnXogBBeLe8Q8X"
@@ -75,26 +71,46 @@
                             );
                             $cardObject = json_decode($response -> raw_body); 
                             echo '<h1>All ' . count($cardObject) . ' cards of ' . $set . '</h1>';
+                            if ($pageIndex == 1) {
+                                $startIndex = 0;
+                                $size = 50;
+                            }
+                            else if ($pageIndex == 2) {
+                                $startIndex = 50;
+                                $size = 100;
+                            }
+                            else if ($pageIndex == 3) {
+                                $startIndex = 100;
+                                $size = 135;
+                            }
                             // Dit is de loop om de name van alle kaarten te zien
-                            for($i = 0, $size = count($cardObject); $i < $size; ++$i) {
-                                echo '<a href=card.php?name=' . rawurlencode($cardObject[$i] -> name) . '>' . $cardObject[$i] -> name . '</a><br>';
+                            for($i = $startIndex; $i < $size; ++$i) {
+                                echo $i . '<a href=card.php?name=' . rawurlencode($cardObject[$i] -> name) . '>' . $cardObject[$i] -> name . '</a><br>';
                             }
                         ?>
                     </div>
                 </div>
             </div>
+            <div class="row">
+                <div class="col-12">
+                    <nav aria-label="Page navigation example">
+                        <ul class="pagination justify-content-end">
+                            <?php
+                                echo '<li class="page-item"><a class="page-link active" href="set.php?set=' . rawurlencode($set) . '&page=1">1-50</a></li>';
+                                echo '<li class="page-item"><a class="page-link active" href="set.php?set=' . rawurlencode($set) . '&page=2">51-100</a></li>';
+                                echo '<li class="page-item"><a class="page-link active" href="set.php?set=' . rawurlencode($set) . '&page=3">100-135</a></li>';
+                            ?>
+                        </ul>
+                    </nav>
+                </div>
+            </div>
         </div>
     </div>
     <footer class="footer">
-            <div class="row">
-                <div class="col-md-12 text-center">
-                    Kampany.nl (c) 
-                    <img src="img/social_email.png" height="30px">
-                    <img src="img/social_facebook3.png" height="30px">
-                    <img src="img/social_twitter.png" height="30px">
-                </div>
-            </div>
-        </footer>
+        <img src="img/social_email.png" height="30px">
+        <img src="img/social_facebook3.png" height="30px">
+        <img src="img/social_twitter.png" height="30px">
+    </footer>
 </body>
 <script src="index.js"></script>
 </html>
