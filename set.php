@@ -1,10 +1,48 @@
 <!DOCTYPE html>
 <html>
+<?php
+    include "Unirest.php";
+
+        // These code snippets use an open-source library. http://unirest.io/php
+        $set = $_GET['set'];
+        $pageIndex = $_GET['page'];
+        $response = Unirest\Request::get('https://omgvamp-hearthstone-v1.p.mashape.com/cards/sets/' . rawurlencode($set) . '?collectible=1',
+        array(
+            "X-Mashape-Key" => "WIn8D1aVHgmshmfQKvu0TCf7oIXap1k7JoPjsnXogBBeLe8Q8X"
+        )
+        );
+        $cardObject = json_decode($response -> raw_body); 
+        if ($pageIndex == 1) {
+            $startIndex = 0;
+            $size = 50;
+        }
+        else if ($pageIndex == 2) {
+            $startIndex = 50;
+            $size = 100;
+        }
+        else if ($pageIndex == 3) {
+            $startIndex = 100;
+            if ($set == 'Classic') {
+                $size = 150;
+            }
+            else {
+                $size = 135;
+            }
+        }
+        else if ($pageIndex == 4) {
+            $startIndex = 150;
+            $size = 200;
+        }
+        else if ($pageIndex == 5) {
+            $startIndex = 200;
+            $size = 240;
+        }
+?>
 
 <head>
     <meta charset="utf-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>Page Title</title>
+    <title>Card Sets</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
@@ -57,54 +95,34 @@
         <div class="container-fluid">
             <div class="row">
                 <div class="col-lg-3"></div>
-                    <div class="col-lg-6">
-                        <?php
-                            include "Unirest.php";
-
-                            // These code snippets use an open-source library. http://unirest.io/php
-                            $set = $_GET['set'];
-                            $pageIndex = $_GET['page'];
-                            $response = Unirest\Request::get('https://omgvamp-hearthstone-v1.p.mashape.com/cards/sets/' . rawurlencode($set) . '?collectible=1',
-                            array(
-                                "X-Mashape-Key" => "WIn8D1aVHgmshmfQKvu0TCf7oIXap1k7JoPjsnXogBBeLe8Q8X"
-                            )
-                            );
-                            $cardObject = json_decode($response -> raw_body); 
-                            echo '<h1>All ' . count($cardObject) . ' cards of ' . $set . '</h1>';
-                            if ($pageIndex == 1) {
-                                $startIndex = 0;
-                                $size = 50;
-                            }
-                            else if ($pageIndex == 2) {
-                                $startIndex = 50;
-                                $size = 100;
-                            }
-                            else if ($pageIndex == 3) {
-                                $startIndex = 100;
-                                $size = 135;
-                            }
-                            // Dit is de loop om de name van alle kaarten te zien
-                            for($i = $startIndex; $i < $size; ++$i) {
-                                echo $i . '<a href=card.php?name=' . rawurlencode($cardObject[$i] -> name) . '>' . $cardObject[$i] -> name . '</a><br>';
-                            }
-                        ?>
-                    </div>
+                <div class="col-lg-6">
+                    <?php
+                        // Dit is de loop om de name van alle kaarten te zien
+                        echo '<h1>Cards of ' . $set . ' page ' . $pageIndex . '</h1>';
+                        for($i = $startIndex; $i < $size; ++$i) {
+                            echo '<a href=card.php?name=' . rawurlencode($cardObject[$i] -> name) . '>' . $cardObject[$i] -> name . '</a><br>';
+                        }
+                    ?>
                 </div>
-            </div>
-            <div class="row">
-                <div class="col-12">
+                <div class="col-lg-3">
                     <nav aria-label="Page navigation example">
                         <ul class="pagination justify-content-end">
                             <?php
-                                echo '<li class="page-item"><a class="page-link active" href="set.php?set=' . rawurlencode($set) . '&page=1">1-50</a></li>';
-                                echo '<li class="page-item"><a class="page-link active" href="set.php?set=' . rawurlencode($set) . '&page=2">51-100</a></li>';
-                                echo '<li class="page-item"><a class="page-link active" href="set.php?set=' . rawurlencode($set) . '&page=3">100-135</a></li>';
+                                echo '<li class="page-item"><a class="page-link active" href="set.php?set=' . rawurlencode($set) . '&page=1">1</a></li>';
+                                echo '<li class="page-item"><a class="page-link active" href="set.php?set=' . rawurlencode($set) . '&page=2">2</a></li>';
+                                echo '<li class="page-item"><a class="page-link active" href="set.php?set=' . rawurlencode($set) . '&page=3">3</a></li>';
+                                if ($set == 'Classic'){
+                                    echo '<li class="page-item"><a class="page-link active" href="set.php?set=' . rawurlencode($set) . '&page=4">4</a></li>';
+                                    echo '<li class="page-item"><a class="page-link active" href="set.php?set=' . rawurlencode($set) . '&page=5">5</a></li>';
+                                }
                             ?>
                         </ul>
                     </nav>
                 </div>
+                </div>
             </div>
         </div>
+        <p id='unselectable'>&nbsp;</p>
     </div>
     <footer class="footer">
         <img src="img/social_email.png" height="30px">
