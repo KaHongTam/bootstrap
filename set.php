@@ -25,6 +25,9 @@
             if ($set == 'Classic') {
                 $size = 150;
             }
+            if ($set == 'Basic') {
+                $size = 142;
+            }
             else {
                 $size = 135;
             }
@@ -36,6 +39,11 @@
         else if ($pageIndex == 5) {
             $startIndex = 200;
             $size = 240;
+        }
+
+        if ($set == 'Hall of Fame') {
+            $startIndex = 0;
+            $size = count($cardObject);
         }
 ?>
 
@@ -98,22 +106,24 @@
                 <div class="col-lg-6">
                     <?php
                         // Dit is de loop om de name van alle kaarten te zien
-                        echo '<h1>Cards of ' . $set . ' page ' . $pageIndex . '</h1>';
+                        echo '<h1>' . $set . ' cards (' . count($cardObject) . ' total) page ' . $pageIndex . '</h1>';
                         for($i = $startIndex; $i < $size; ++$i) {
                             echo '<a href=card.php?name=' . rawurlencode($cardObject[$i] -> name) . '>' . $cardObject[$i] -> name . '</a><br>';
                         }
                     ?>
                 </div>
-                <div class="col-lg-3">
+                <div class="col-lg-3 pageNavigator">
                     <nav aria-label="Page navigation example">
                         <ul class="pagination justify-content-end">
                             <?php
-                                echo '<li class="page-item"><a class="page-link active" href="set.php?set=' . rawurlencode($set) . '&page=1">1</a></li>';
-                                echo '<li class="page-item"><a class="page-link active" href="set.php?set=' . rawurlencode($set) . '&page=2">2</a></li>';
-                                echo '<li class="page-item"><a class="page-link active" href="set.php?set=' . rawurlencode($set) . '&page=3">3</a></li>';
-                                if ($set == 'Classic'){
-                                    echo '<li class="page-item"><a class="page-link active" href="set.php?set=' . rawurlencode($set) . '&page=4">4</a></li>';
-                                    echo '<li class="page-item"><a class="page-link active" href="set.php?set=' . rawurlencode($set) . '&page=5">5</a></li>';
+                                if ($set != 'Hall of Fame') {
+                                    echo '<li class="page-item"><a class="page-link active" href="set.php?set=' . rawurlencode($set) . '&page=1">1</a></li>';
+                                    echo '<li class="page-item"><a class="page-link active" href="set.php?set=' . rawurlencode($set) . '&page=2">2</a></li>';
+                                    echo '<li class="page-item"><a class="page-link active" href="set.php?set=' . rawurlencode($set) . '&page=3">3</a></li>';
+                                    if ($set == 'Classic'){
+                                        echo '<li class="page-item"><a class="page-link active" href="set.php?set=' . rawurlencode($set) . '&page=4">4</a></li>';
+                                        echo '<li class="page-item"><a class="page-link active" href="set.php?set=' . rawurlencode($set) . '&page=5">5</a></li>';
+                                    }
                                 }
                             ?>
                         </ul>
