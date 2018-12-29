@@ -108,7 +108,7 @@
                         // Dit is de loop om de name van alle kaarten te zien
                         echo '<h1>' . $set . ' cards (' . count($cardObject) . ' total) page ' . $pageIndex . '</h1>';
                         for($i = $startIndex; $i < $size; ++$i) {
-                            echo '<a href=card.php?name=' . rawurlencode($cardObject[$i] -> name) . '>' . $cardObject[$i] -> name . '</a><br>';
+                            echo '<a href=card.php?name=' . rawurlencode($cardObject[$i] -> name) . '><div class="listItem">' . $cardObject[$i] -> name . '</div></a>';
                         }
                     ?>
                 </div>

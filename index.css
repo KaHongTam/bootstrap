@@ -6,14 +6,36 @@
 body {
     background-image: url("img/paper-background1.jpg");
     color: black;
-}
-
-h1, b {
     font-family: Friz;
 }
 
 p {
     font-size: 22px;
+}
+
+a {
+    font-size: 18px;
+    color: black;
+}
+
+.listItem {
+    /* background-image: linear-gradient(to bottom right, #e0e0622c, #eed2d242); */
+    margin-top: 2px;
+    margin-bottom: 2px;
+    padding-top: 3px;
+    padding-left: 10px;
+    border: outset 3px #7c734270;
+    max-width: 300px;
+    background: #adaa9e27;
+}
+
+.listItem:hover {
+    border: inset 3px #7c734270;
+}
+
+a:hover {
+    text-decoration: none;
+    color: black;
 }
 
 #unselectable {
@@ -24,7 +46,7 @@ p {
 }
 
 #page-content-wrapper {
-    padding-top: 1%;
+    padding-top: 2%;
     padding-bottom: 38px;
 }
 
