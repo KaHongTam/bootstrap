@@ -11,21 +11,20 @@
     <body>
         <?php
             $name = $_GET['name'];
-
-            $response = Unirest\Request::get("https://omgvamp-hearthstone-v1.p.mashape.com/cards/" . rawurlencode($name),
+            
+            $response = Unirest\Request::get("https://omgvamp-hearthstone-v1.p.mashape.com/cards/sets/" . rawurlencode($name) . "?collectible=1",
             array(
                 "X-Mashape-Key" => "WIn8D1aVHgmshmfQKvu0TCf7oIXap1k7JoPjsnXogBBeLe8Q8X",
                 "Accept" => "application/json"
             )
             );
 
-            $cardObject = json_decode($response -> raw_body);  
+            $cardObject = json_decode($response -> raw_body);
 
             echo "<br>";
             echo "<br>";
 
             var_dump($cardObject);
-
 
             // echo $cardObject[0] -> cost;
 

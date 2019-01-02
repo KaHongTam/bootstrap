@@ -11,7 +11,7 @@
             "X-Mashape-Key" => "WIn8D1aVHgmshmfQKvu0TCf7oIXap1k7JoPjsnXogBBeLe8Q8X"
         )
         );
-        $cardObject = json_decode($response -> raw_body); 
+        $cardObject = json_decode($response -> raw_body);
         if ($pageIndex == 1) {
             $startIndex = 0;
             $size = 50;
@@ -140,5 +140,5 @@
         <img src="img/social_twitter.png" height="30px">
     </footer>
 </body>
-<script src="index.js"></script>
+<script src="js/index.js"></script>
 </html>
